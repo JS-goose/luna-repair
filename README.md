@@ -1,0 +1,2 @@
+# luna-repair
+Luna Repair System will be a dynamic ticketing/invoicing/inventory management system for a small computer repair shop.  This system will allow the user to store information on current retail/customer inventory, status of each repair, customer info, etc.  It will also have some custom functionality to create take off sheets (to do list for technician), custom tagging system to print labels for each repair job, and custom invoice printing.
