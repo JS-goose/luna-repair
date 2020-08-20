@@ -9,6 +9,7 @@ export default function Home() {
         <h1>
           Welcome to Luna Repair System!
         </h1>
+        <p>Testing tailwind</p>
       </div>
     </Layout>
   )
