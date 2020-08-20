@@ -5,9 +5,6 @@
 
 @tailwind utilities;
 
-p {
-  @apply text-6xl;
-}
 html,
 body {
   padding: 0;
