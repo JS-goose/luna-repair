@@ -4,12 +4,9 @@ import Image from '../components/Image/image';
 
 export default function Home() {
   return (
-    <article className="bacon">
+    <article className="landing-page-container">
       <div className="bg-white">
         <h1 className="text-5xl">Welcome to Luna Repair System!</h1>
-      </div>
-      <div>
-        {/* <Image path={`landingPageBG.jpg`} /> */}
       </div>
     </article>
   );
