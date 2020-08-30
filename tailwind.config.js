@@ -14,7 +14,10 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    backgroundColor: [`responsive`,`hover`,`focus`,`active`],
+    textColor: [`responsive`,`hover`,`focus`,`active`]
+  },
   plugins: [],
   future: {
     removeDeprecatedGapUtilities: true,
