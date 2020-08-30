@@ -4,10 +4,12 @@ import Image from '../components/Image/image';
 
 export default function Home() {
   return (
-    <article>
-      <h1 className="text-5xl">Welcome to Luna Repair System!</h1>
+    <article className="bacon">
+      <div className="bg-white">
+        <h1 className="text-5xl">Welcome to Luna Repair System!</h1>
+      </div>
       <div>
-        <Image path={`landingPageBG.jpg`} />
+        {/* <Image path={`landingPageBG.jpg`} /> */}
       </div>
     </article>
   );

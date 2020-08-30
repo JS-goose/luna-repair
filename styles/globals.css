@@ -5,6 +5,9 @@
 
 @tailwind utilities;
 
+@import url("index.css"); 
+
+
 html,
 body {
   padding: 0;
