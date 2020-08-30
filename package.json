@@ -15,6 +15,7 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.3.0",
     "autoprefixer": "^9.8.6",
+    "next-optimized-images": "^2.6.2",
     "tailwindcss": "^1.7.2"
   }
 }
