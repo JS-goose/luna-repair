@@ -9,7 +9,8 @@ module.exports = {
         eggShell: `#F7F7F7`,
         lime: `#12C73D`,
         liteRed: `#DC3545`,
-        charcoal: `#232323`
+        charcoal: `#232323`,
+        wht20: `rgba(255, 255, 255, 0.2)`
       },
     },
   },
