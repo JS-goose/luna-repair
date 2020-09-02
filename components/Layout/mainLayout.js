@@ -1,7 +1,9 @@
+// A global layout for the app.  Useful for global styling etc.
+
 import React from 'react';
 import Navbar from '../Navbar/navbar';
 
-const Layout = ({ children }) => {
+const MainLayout = ({ children }) => {
   return (
     <section>
       <Navbar />
@@ -10,4 +12,4 @@ const Layout = ({ children }) => {
   );
 };
 
-export default Layout;
+export default MainLayout;
