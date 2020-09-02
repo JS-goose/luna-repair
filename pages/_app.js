@@ -4,11 +4,16 @@
 // import App from 'next/app';
 import '../styles/globals.css';
 import MainLayout from '../components/Layout/mainLayout';
+import DefaultLayout from '../components/Layout/defaultLayout';
 
 function MyApp({ Component, pageProps }) {
+  // Try to get the Layout from the component.  If it doesn't have a layout assigned, used the default layout
+  const Layout = Component.Layout || DefaultLayout;
   return (
     <MainLayout>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </MainLayout>
   );
 }
