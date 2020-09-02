@@ -1,7 +1,10 @@
-import react from 'react'
+import React from 'react';
+import DashboardLayout from '../components/Layout/dashboardLayout';
 
 const CreateInvoice = () => {
-    return <div>This is the invoice creation page!</div>
-}
+  return <div>This is the invoice creation page!</div>;
+};
 
-export default CreateInvoice
+CreateInvoice.Layout = DashboardLayout;
+
+export default CreateInvoice;
