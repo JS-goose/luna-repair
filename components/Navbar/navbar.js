@@ -1,7 +1,8 @@
-import React from 'react';
+import Link from 'next/link';
+import { signin, signout, useSession, options } from 'next-auth/client';
 
 const NavBar = () => {
   return <nav>This is the navbar</nav>;
 };
 
-export default NavBar;
+export default Navbar;

@@ -23,12 +23,21 @@ const options = {
       clientSecret: process.env.GITHUB_SECRET,
     }),
     // ! This has been left out because of the absence of a database to persist user account information within
-    Providers.Email({
-      clientId: process.env.EMAIL_SERVER,
-      clientSecret: process.env.EMAIL_FROM,
-    }),
+    // Providers.Email({
+    //   clientId: process.env.EMAIL_SERVER,
+    //   clientSecret: process.env.EMAIL_FROM,
+    // }),
   ],
+  callbacks: {
+    redirect: async (url, baseUrl) => {
+      // url = 'http://localhost:3000/create-invoice';
+      // baseUrl = 'http://localhost:3000';
+      return url.startsWith(baseUrl) ? Promise.resolve(url) : Promise.resolve(baseUrl);
+    },
+  },
   //! When a database is established, this can be uncommented
   //Needed to persist user accounts within
-  //   database: process.env.DATABASE_URL,
+  // database: process.env.DATABASE_URL,
 };
+
+export default (req, res) => NextAuth(req, res, options);

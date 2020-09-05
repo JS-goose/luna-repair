@@ -5,16 +5,20 @@
 import '../styles/globals.css';
 import MainLayout from '../components/Layout/mainLayout';
 import DefaultLayout from '../components/Layout/defaultLayout';
+import { Provider } from 'next-auth/client';
 
 function MyApp({ Component, pageProps }) {
+  const { session } = pageProps;
   // Try to get the Layout from the component.  If it doesn't have a layout assigned, used the default layout
   const Layout = Component.Layout || DefaultLayout;
   return (
-    <MainLayout>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </MainLayout>
+    <Provider options={{ site: process.env.SITE }} session={session}>
+      <MainLayout>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </MainLayout>
+    </Provider>
   );
 }
 
