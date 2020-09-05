@@ -1,9 +1,11 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Image from '../components/Image/image';
+import Layout from '../components/Layout/layout'
 
 export default function Home() {
   return (
+    <Layout>
     <article className="landing-page-container flex flex-col items-center justify-center sm:space-y-10 md:space-y-40">
       <div className="bg-wht20 sm:w-full md:w-auto p-4 text-center border-solid border-2 border-medDarkBlue rounded">
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white">
@@ -50,5 +52,6 @@ export default function Home() {
         </div>
       </div>
     </article>
+    </Layout>
   );
 }
