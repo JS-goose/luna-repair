@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { signin, signout, useSession, options } from 'next-auth/client';
+import { signIn, signout, useSession, options } from 'next-auth/client';
 
 const NavBar = () => {
   return <nav>This is the navbar</nav>;
