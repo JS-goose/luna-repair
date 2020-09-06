@@ -44,7 +44,7 @@ export default function Home() {
             {!session && (
               <a
                 href="/api/auth/signin"
-                target="_blank"
+                target=""
                 rel="noopener noreferrer"
                 onClick={(e) => {
                   signIn(null, { callbackUrl: 'http://localhost:3000/create-invoice' });
@@ -55,6 +55,24 @@ export default function Home() {
                   className="bg-lightBlue text-white w-2/5 self-center hover:bg-darkBlue hover:shadow-md active:bg-lime active:text-charcoal focus:outline-none focus:shadow-outline font-bold mt-10 p-2 rounded shadow"
                 >
                   Sign In
+                </button>
+              </a>
+            )}
+            {session && (
+              <a
+                href="/api/auth/signout"
+                target=""
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  signOut();
+                }}
+              >
+                <button
+                  type="button"
+                  className="bg-black text-white w-2/5 self-center hover:bg-darkBlue hover:shadow-md active:bg-lime active:text-charcoal focus:outline-none focus:shadow-outline font-bold mt-10 p-2 rounded shadow"
+                >
+                  Sign Out
                 </button>
               </a>
             )}
