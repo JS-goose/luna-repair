@@ -47,7 +47,9 @@ export default function Home() {
                 target=""
                 rel="noopener noreferrer"
                 onClick={(e) => {
-                  signIn(null, { callbackUrl: 'http://localhost:3000/create-invoice' });
+                  e.preventDefault();
+                  {/* This needs to be updated so that users are redirected no matter what login flow they choose */}
+                  signIn('google', { callbackUrl: 'http://localhost:3000/create-invoice' });
                 }}
               >
                 <button
