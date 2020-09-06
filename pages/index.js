@@ -6,7 +6,7 @@ import Image from '../components/Image/image';
 import Layout from '../components/Layout/layout';
 
 export default function Home() {
-  const email = '';
+  const [session, loading] = useSession();
 
   return (
     <Layout>
@@ -38,13 +38,26 @@ export default function Home() {
               className="shadow p-1 rounded"
               placeholder="We won't tell..."
             /> */}
-            <h3 className="text-xl">Use your favorite social account or create an account using your email!</h3>
-            <button
-              type="submit"
-              className="bg-lightBlue text-white w-2/5 self-center hover:bg-darkBlue hover:shadow-md active:bg-lime active:text-charcoal focus:outline-none focus:shadow-outline font-bold mt-10 p-2 rounded shadow"
-            >
-              Sign In
-            </button>
+            <h3 className="text-xl">
+              Use your favorite social account or create an account using your email!
+            </h3>
+            {!session && (
+              <a
+                href="/api/auth/signin"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  signIn(null, { callbackUrl: 'http://localhost:3000/create-invoice' });
+                }}
+              >
+                <button
+                  type="button"
+                  className="bg-lightBlue text-white w-2/5 self-center hover:bg-darkBlue hover:shadow-md active:bg-lime active:text-charcoal focus:outline-none focus:shadow-outline font-bold mt-10 p-2 rounded shadow"
+                >
+                  Sign In
+                </button>
+              </a>
+            )}
           </div>
           <div className="landing-page-row2 flex flex-row w-full text-center mt-8 justify-between">
             <div>

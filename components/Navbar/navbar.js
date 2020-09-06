@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { signin, signout, useSession, options } from 'next-auth/client';
+import { signIn, signout, useSession, options } from 'next-auth/client';
 
 const Navbar = () => {
   const [session, loading] = useSession();
@@ -13,7 +13,7 @@ const Navbar = () => {
               href="/api/auth/signin"
               onClick={(e) => {
                 e.preventDefault();
-                signin('http://localhost:3000/create-invoice','http://localhost:3000');
+                signIn(null, {callbackUrl: 'http://localhost:3000/create-invoice'});
               }}
             >
               <button className="signInButton">Sign in</button>
