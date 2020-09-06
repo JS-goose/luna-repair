@@ -2,6 +2,9 @@ import NextAuth from 'next-auth';
 import Providers from 'next-auth/providers';
 
 const options = {
+  pages: {
+    signIn: '/auth/signin',
+  },
   site: process.env.SITE || `http://localhost:3000`,
   providers: [
     Providers.Google({
@@ -28,13 +31,6 @@ const options = {
       clientSecret: process.env.EMAIL_FROM,
     }),
   ],
-  // callbacks: {
-  //   redirect: async (url, baseUrl) => {
-  //     url = 'http://localhost:3000/create-invoice';
-  //     baseUrl = 'http://localhost:3000';
-  //     return url.startsWith(baseUrl) ? Promise.resolve(url) : Promise.resolve(baseUrl);
-  //   },
-  // },
   //! When a database is established, this can be uncommented
   //Needed to persist user accounts within
   database: process.env.DATABASE_URL,
