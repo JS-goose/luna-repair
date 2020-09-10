@@ -1,6 +1,6 @@
 .landing-page-container {
-    background: url('../images/landingPageBG.jpg') no-repeat center;
-    height: 100vh;
-    width: 100vw;
-    background-size: cover;
+  background: url('../images/landingPageBG.jpg') no-repeat center;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
 }
