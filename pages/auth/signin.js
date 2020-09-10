@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { providers, signIn } from 'next-auth/client';
 import Image from '../../components/Image/image';
 
 export default function SignIn({ providers }) {
+  const [containers = [], setContainers] = useState(0);
   return (
     <section className="signin-container text-white flex flex-col items-center justify-center">
       <article className="bg-medDarkBlue p-6 text-xl rounded-sm shadow-xl">
         {Object.values(providers).map((provider) => (
+        
           <div
             key={provider.name}
             data-key={provider.name}
