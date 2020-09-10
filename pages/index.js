@@ -43,13 +43,13 @@ export default function Home() {
             </h3>
             {!session && (
               <a
-                href="/api/auth/signin"
+                href="/auth/signin"
                 target=""
                 rel="noopener noreferrer"
                 onClick={(e) => {
                   e.preventDefault();
                   {/* This needs to be updated so that users are redirected no matter what login flow they choose */}
-                  signIn('google', { callbackUrl: 'http://localhost:3000/create-invoice' });
+                  signIn();
                 }}
               >
                 <button
