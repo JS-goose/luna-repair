@@ -6,7 +6,13 @@ export default function SignIn({ providers }) {
     <>
       {Object.values(providers).map((provider) => (
         <div key={provider.name}>
-          <button onClick={() => signIn(provider.id)}>Sign in with {provider.name} and bacon!</button>
+          <button
+            onClick={() =>
+              signIn(provider.id, { callbackUrl: 'http://localhost:3000/create-invoice' })
+            }
+          >
+            Sign in with {provider.name} and bacon!
+          </button>
         </div>
       ))}
     </>
