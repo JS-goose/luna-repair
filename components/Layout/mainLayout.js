@@ -6,7 +6,7 @@ import Navbar from '../Navbar/navbar';
 const MainLayout = ({ children }) => {
   return (
     <section>
-      <Navbar />
+      {/* <Navbar /> */}
       <main>{children}</main>
     </section>
   );
