@@ -5,9 +5,13 @@ import Image from '../../components/Image/image';
 export default function SignIn({ providers }) {
   return (
     <section className="signin-container text-white flex flex-col items-center justify-center">
-      <article className="bg-medDarkBlue p-6 text-xl">
+      <article className="bg-medDarkBlue p-6 text-xl rounded-sm shadow-xl">
         {Object.values(providers).map((provider) => (
-          <div key={provider.name} className="flex flex-col justify-center p-4 border border-black">
+          <div
+            key={provider.name}
+            data-key={provider.name}
+            className="button-container flex flex-col justify-center p-4 border border-charcoal rounded-sm hover:bg-darkBlue"
+          >
             <button
               onClick={() =>
                 signIn(provider.id, { callbackUrl: 'http://localhost:3000/create-invoice' })
@@ -21,7 +25,6 @@ export default function SignIn({ providers }) {
     </section>
   );
 }
-
 SignIn.getInitialProps = async (context) => {
   return {
     providers: await providers(context),
