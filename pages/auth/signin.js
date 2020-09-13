@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { providers, signIn } from "next-auth/client";
 import Image from "../../components/Image/image";
 import GoogleImg from "../../images/icons/Google.png";
@@ -53,6 +54,9 @@ export default function SignIn({ providers }) {
             )
           )}
         </div>
+        <p className="border border-charcoal p-2 mt-4 rounded bg-liteRed">
+          <Link href="/">Cancel Sign In</Link>
+        </p>
       </article>
     </section>
   );
