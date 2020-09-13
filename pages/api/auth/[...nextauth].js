@@ -18,10 +18,10 @@ const options = {
       clientSecret: process.env.FACEBOOK_SECRET,
     }),
     // ! This has been left out because of the absence of a database to persist user account information within
-    Providers.Email({
-      clientId: process.env.EMAIL_SERVER,
-      clientSecret: process.env.EMAIL_FROM,
-    }),
+    // Providers.Email({
+    //   clientId: process.env.EMAIL_SERVER,
+    //   clientSecret: process.env.EMAIL_FROM,
+    // }),
   ],
   callbacks: {
     signIn: async (user, account, profile) => {
@@ -39,7 +39,7 @@ const options = {
       return Promise.resolve(session);
     },
   },
-  //! When a database is established, this can be uncommented
+  //! A database will need to be established before this is functional
   //Needed to persist user accounts within
   database: process.env.DATABASE_URL,
 };
