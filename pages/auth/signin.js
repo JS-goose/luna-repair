@@ -9,36 +9,47 @@ export default function SignIn({ providers }) {
   const [containers = [], setContainers] = useState();
   return (
     <section className="signin-container text-white flex flex-col items-center justify-center">
-      <article className="bg-medDarkBlue p-6 text-xl rounded-sm shadow-xl">
-        {Object.values(providers).map(
-          (provider) => (
-            containers.push(provider),
-            console.log(containers),
-            (
-              <div
-                key={provider.name}
-                data-key={provider.name}
-                className="button-container flex flex-col justify-center p-4 border border-charcoal rounded-sm hover:bg-darkBlue">
-                <button onClick={() => signIn(provider.id, { callbackUrl: "http://localhost:3000/create-invoice" })}>
-                  Sign in with {provider.name}{" "}
-                  <img
-                    src={
-                      provider.id === "google"
-                        ? GoogleImg
-                        : provider.id === "facebook"
-                        ? FacebookImg
-                        : provider.id === "email"
-                        ? EmailImg
-                        : ""
-                    }
-                    className="h-12 w-12"
-                    alt=""
-                  />
-                </button>
-              </div>
+      <article className="flex flex-col items-center bg-medDarkBlue p-6 text-xl rounded-sm shadow-xl">
+        <h1 className="text-2xl mb-4">Please choose a sign in method:</h1>
+        <div className="flex flex-row">
+          {Object.values(providers).map(
+            (provider) => (
+              containers.push(provider),
+              console.log(containers),
+              (
+                <div
+                  key={provider.name}
+                  data-key={provider.name}
+                  className="button-container flex flex-row justify-center w-32 rounded-sm hover:bg-darkBlue p-6">
+                    {/* Social icons courtesy of Alex Martinov https://dribbble.com/Rengised */}
+                  <button onClick={() => signIn(provider.id, { callbackUrl: "http://localhost:3000/create-invoice" })}>
+                    <img
+                      src={
+                        provider.id === "google"
+                          ? GoogleImg
+                          : provider.id === "facebook"
+                          ? FacebookImg
+                          : provider.id === "email"
+                          ? EmailImg
+                          : ""
+                      }
+                      className="h-12 w-12"
+                      alt={
+                        provider.id === `google`
+                          ? `the google logo`
+                          : provider.id === `facebook`
+                          ? `the facebook logo`
+                          : provider.id === `email`
+                          ? `a letter`
+                          : ``
+                      }
+                    />
+                  </button>
+                </div>
+              )
             )
-          )
-        )}
+          )}
+        </div>
       </article>
     </section>
   );
