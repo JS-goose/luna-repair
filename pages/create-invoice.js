@@ -160,7 +160,7 @@ const invoicePlaceholders = [
     lastUpdated: '10/18/2020',
   },
   {
-    invoiceNumber: '0010',
+    invoiceNumber: '010',
     firstName: 'Dolly',
     lastName: 'Parton',
     company: 'Generic Company Name',
@@ -191,27 +191,27 @@ const CreateInvoice = () => {
         <div className='border border-gray-400 p-4 shadow-md rounded'>
           <H2>Create An Invoice</H2>
           <form className='grid justify-start gap-y-2 mt-8'>
-            <label>
+            <label htmlFor='invoice-number'>
               Invoice#:&nbsp;
-              <Input type='text' placeholder='#####' id='invoiceNumber' />{' '}
+              <Input name='invoice-number' id='invoice-number' type='text' placeholder='#####' />{' '}
             </label>
             <div className='flex gap-x-5'>
-              <label>
+              <label htmlFor='first-name'>
                 First Name:&nbsp;
-                <Input type='text' placeholder='First Name' id='name' />
+                <Input name='first-name' type='text' placeholder='First Name' id='first-name' />
               </label>
-              <label>
+              <label htmlFor='last-name'>
                 Last Name:&nbsp;
-                <Input type='text' placeholder='First Name' id='name' />
+                <Input name='last-name' type='text' placeholder='First Name' id='last-name' />
               </label>
             </div>
-            <label>
+            <label htmlFor='address1'>
               Address 1:&nbsp;
-              <Input type='text' placeholder='Address' id='address1' />
+              <Input name='address1' type='text' placeholder='Address' id='address1' />
             </label>
-            <label>
+            <label htmlFor='address2'>
               Address 2:&nbsp;
-              <Input type='text' placeholder='Address' id='address1' />
+              <Input name='address2' type='text' placeholder='Address' id='address2' />
             </label>
             <button type='submit' className='border-2 border-black rounded-md p-1 uppercase tracking-wider font-bold'>
               Submit
@@ -221,8 +221,8 @@ const CreateInvoice = () => {
         <div className='border border-gray-300 p-5 shadow-md rounded'>
           <H2>Invoice Summary</H2>
           <div className='mt-8'>
-            {invoicePlaceholders.map((invoice) => (
-              <div className='mt-2'>
+            {invoicePlaceholders.map((invoice, index) => (
+              <div key={index} data-key={index} className='mt-2'>
                 <div className='flex justify-between'>
                   <p className='mb-2'>
                     Invoice Number:
