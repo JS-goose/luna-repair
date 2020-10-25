@@ -2,6 +2,7 @@ import React from 'react';
 import DashboardLayout from '../components/Layout/dashboardLayout';
 
 const Input = (props) => <input {...props} className='border border-gray-300 p-1 rounded' />;
+const Label = (props) => <label {...props} className='w-32' />
 
 const H2 = ({ children }) => <h2 className='text-2xl leading-7 font-semibold u'>{children}</h2>;
 
@@ -190,32 +191,61 @@ const CreateInvoice = () => {
       <main className='grid items-stretch gap-y-8 mt-5'>
         <div className='border border-gray-400 p-4 shadow-md rounded'>
           <H2>Create An Invoice</H2>
-          <form className='grid justify-start gap-y-2 mt-8'>
-            <label htmlFor='invoice-number'>
-              Invoice#:&nbsp;
-              <Input name='invoice-number' id='invoice-number' type='text' placeholder='#####' />{' '}
-            </label>
-            <div className='flex gap-x-5'>
-              <label htmlFor='first-name'>
+          <form className='grid grid-cols-2 justify-start gap-y-2 mt-8'>
+            <div className='grid grid-cols-2 gap-y-2'>
+              <Label htmlFor='invoice-number'>
+                Invoice#:&nbsp;
+                <Input name='invoice-number' id='invoice-number' type='text' placeholder='#####' />{' '}
+              </Label>
+              <Label htmlFor='first-name'>
                 First Name:&nbsp;
                 <Input name='first-name' type='text' placeholder='First Name' id='first-name' />
-              </label>
-              <label htmlFor='last-name'>
+              </Label>
+              <Label htmlFor='last-name'>
                 Last Name:&nbsp;
                 <Input name='last-name' type='text' placeholder='First Name' id='last-name' />
-              </label>
+              </Label>
+              <Label htmlFor='address1'>
+                Address 1:&nbsp;
+                <Input name='address1' type='text' placeholder='Address' id='address1' />
+              </Label>
+              <Label htmlFor='address2'>
+                Address 2:&nbsp;
+                <Input name='address2' type='text' placeholder='Address' id='address2' />
+              </Label>
+              <Label htmlFor='city'>
+                City:&nbsp;
+                <Input name='city' type='text' placeholder='City' id='city' />
+              </Label>
+              <Label htmlFor='state'>
+                State:&nbsp;
+                <Input name='state' type='text' placeholder='State' id='state' />
+              </Label>
+              <Label htmlFor='zipCode'>
+                Zip Code:&nbsp;
+                <Input name='zipCode' type='number' min='0' max='10000' placeholder='Zip Code' id='zipCode' />
+              </Label>
             </div>
-            <label htmlFor='address1'>
-              Address 1:&nbsp;
-              <Input name='address1' type='text' placeholder='Address' id='address1' />
-            </label>
-            <label htmlFor='address2'>
-              Address 2:&nbsp;
-              <Input name='address2' type='text' placeholder='Address' id='address2' />
-            </label>
-            <button type='submit' className='border-2 border-black rounded-md p-1 uppercase tracking-wider font-bold'>
-              Submit
-            </button>
+            <div>
+              <H2>Customer Contact Information</H2>
+              <div className='invoice-creation-column-2'>
+                <Label htmlFor=''>
+                  Phone Number:&nbsp;
+                  <Input
+                    name='phone-number'
+                    type='tel'
+                    id=''
+                    placeholder='***-***-****'
+                    pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
+                  />
+                </Label>
+              </div>
+            </div>
+            <div>
+              <button type='submit' className='border-2 border-black rounded-md p-1 uppercase tracking-wider font-bold'>
+                Submit
+              </button>
+            </div>
           </form>
         </div>
         <div className='border border-gray-300 p-5 shadow-md rounded'>
