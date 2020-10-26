@@ -1,8 +1,8 @@
 import React from 'react';
 import DashboardLayout from '../components/Layout/dashboardLayout';
 
-const Input = (props) => <input {...props} className='border border-gray-300 p-1 rounded' />;
-const Label = (props) => <label {...props} className='w-32' />
+const Input = (props) => <input {...props} className='border border-gray-300 p-1 rounded w-48' />;
+const Label = (props) => <label {...props} className='w-40 font-bold flex flex-col' />;
 
 const H2 = ({ children }) => <h2 className='text-2xl leading-7 font-semibold u'>{children}</h2>;
 
@@ -189,57 +189,75 @@ const CreateInvoice = () => {
       </div>
       {/* Invoice page Main content */}
       <main className='grid items-stretch gap-y-8 mt-5'>
+        <H2>Create An Invoice</H2>
         <div className='border border-gray-400 p-4 shadow-md rounded'>
-          <H2>Create An Invoice</H2>
-          <form className='grid grid-cols-2 justify-start gap-y-2 mt-8'>
-            <div className='grid grid-cols-2 gap-y-2'>
+          <form className='grid grid-cols-2 gap-y-2 mt-8'>
+            <div className='grid grid-cols-2 gap-y-2 justify-items-center'>
               <Label htmlFor='invoice-number'>
-                Invoice#:&nbsp;
-                <Input name='invoice-number' id='invoice-number' type='text' placeholder='#####' />{' '}
+                Invoice Number:&nbsp;
+                <Input name='invoice-number' id='invoice-number' type='text' placeholder='#####' required />{' '}
               </Label>
               <Label htmlFor='first-name'>
                 First Name:&nbsp;
-                <Input name='first-name' type='text' placeholder='First Name' id='first-name' />
-              </Label>
-              <Label htmlFor='last-name'>
-                Last Name:&nbsp;
-                <Input name='last-name' type='text' placeholder='First Name' id='last-name' />
+                <Input name='first-name' type='text' placeholder='First Name' id='first-name' required />
               </Label>
               <Label htmlFor='address1'>
                 Address 1:&nbsp;
-                <Input name='address1' type='text' placeholder='Address' id='address1' />
+                <Input name='address1' type='text' placeholder='Address' id='address1' required />
+              </Label>
+              <Label htmlFor='last-name'>
+                Last Name:&nbsp;
+                <Input name='last-name' type='text' placeholder='First Name' id='last-name' required />
               </Label>
               <Label htmlFor='address2'>
                 Address 2:&nbsp;
-                <Input name='address2' type='text' placeholder='Address' id='address2' />
+                <Input name='address2' type='text' placeholder='Address' id='address2' required />
               </Label>
               <Label htmlFor='city'>
                 City:&nbsp;
-                <Input name='city' type='text' placeholder='City' id='city' />
+                <Input name='city' type='text' placeholder='City' id='city' required />
               </Label>
               <Label htmlFor='state'>
                 State:&nbsp;
-                <Input name='state' type='text' placeholder='State' id='state' />
+                <Input name='state' type='text' placeholder='State' id='state' required />
               </Label>
               <Label htmlFor='zipCode'>
                 Zip Code:&nbsp;
-                <Input name='zipCode' type='number' min='0' max='10000' placeholder='Zip Code' id='zipCode' />
+                <Input name='zipCode' type='number' min='0' max='10000' placeholder='Zip Code' id='zipCode' required />
               </Label>
             </div>
-            <div>
-              <H2>Customer Contact Information</H2>
-              <div className='invoice-creation-column-2'>
-                <Label htmlFor=''>
-                  Phone Number:&nbsp;
-                  <Input
-                    name='phone-number'
-                    type='tel'
-                    id=''
-                    placeholder='***-***-****'
-                    pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
-                  />
-                </Label>
-              </div>
+            <div className='invoice-creation-column-2'>
+              <Label htmlFor='phone-number'>
+                Phone Number:&nbsp;
+                <Input
+                  name='phone-number'
+                  type='tel'
+                  id='phone-number'
+                  placeholder='***-***-****'
+                  pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
+                  required
+                />
+              </Label>
+              <Label htmlFor='email1'>
+                Email 1:&nbsp;
+                <Input name='email1' type='email' id='email1' placeholder='john@email.com' />
+              </Label>
+              <Label htmlFor='email2'>
+                Email 2:&nbsp;
+                <Input name='email2' type='email' id='email2' placeholder='dave@email.com' />
+              </Label>
+              <Label htmlFor='invoice-price'>
+                Invoice Price: &nbsp;
+                <Input
+                  name='invoice-price'
+                  type='number'
+                  min='0'
+                  max='50000'
+                  id='invoice-price'
+                  placeholder='$USD'
+                  required
+                />
+              </Label>
             </div>
             <div>
               <button type='submit' className='border-2 border-black rounded-md p-1 uppercase tracking-wider font-bold'>
