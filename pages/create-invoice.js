@@ -187,28 +187,10 @@ const CreateInvoice = () => {
   return (
     <div className='mx-10'>
       <h1 className='text-4xl font-bold up'>Invoices</h1>
-      <div>
-        {invoicePlaceholders.forEach((invoice) => {
-          invoice.status === 'Paid & Closed'
-            ? paidInvoices++
-            : invoice.status === 'Billed'
-            ? billedInvoices++
-            : invoice.status === 'Awaiting Payment'
-            ? invoicesWaitingForPayment++
-            : invoice.status === 'Active'
-            ? activeInvoices++
-            : '';
-        })}
-        <p>Active Invoices: {activeInvoices}</p>
-        <p>Billed Invoices: {billedInvoices}</p>
-        <p>Waiting on Payment: {invoicesWaitingForPayment}</p>
-        <p>Paid & Closed Invoices:{paidInvoices}</p>
-        <p>Total Invoices: {invoicePlaceholders.length}</p>
-      </div>
       {/* Invoice page Main content */}
       <main className='grid items-stretch gap-y-8 mt-5'>
-        <H2>Create An Invoice</H2>
         <div className='border border-gray-400 p-4 shadow-md rounded'>
+          <H2>Create An Invoice</H2>
           <form className='grid grid-cols-2 gap-y-2 mt-8'>
             <div className='grid grid-cols-2 gap-y-2 justify-items-center'>
               <Label htmlFor='invoice-number'>
@@ -283,6 +265,25 @@ const CreateInvoice = () => {
               </button>
             </div>
           </form>
+        </div>
+        <div className='border border-gray-300 p-5 shadow-md rounded'>
+          <H2>Invoice Summary</H2>
+          {invoicePlaceholders.forEach((invoice) => {
+            invoice.status === 'Paid & Closed'
+              ? paidInvoices++
+              : invoice.status === 'Billed'
+              ? billedInvoices++
+              : invoice.status === 'Awaiting Payment'
+              ? invoicesWaitingForPayment++
+              : invoice.status === 'Active'
+              ? activeInvoices++
+              : '';
+          })}
+          <p>Active Invoices: {activeInvoices}</p>
+          <p>Billed Invoices: {billedInvoices}</p>
+          <p>Waiting on Payment: {invoicesWaitingForPayment}</p>
+          <p>Paid & Closed Invoices:{paidInvoices}</p>
+          <p>Total Invoices: {invoicePlaceholders.length}</p>
         </div>
         <div className='border border-gray-300 p-5 shadow-md rounded'>
           <H2>Invoice Summary</H2>
