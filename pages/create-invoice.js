@@ -5,6 +5,10 @@ const Input = (props) => <input {...props} className='border border-gray-300 p-1
 const Label = (props) => <label {...props} className='w-40 font-bold flex flex-col' />;
 
 const H2 = ({ children }) => <h2 className='text-2xl leading-7 font-semibold u'>{children}</h2>;
+let paidInvoices = 0;
+let invoicesWaitingForPayment = 0;
+let activeInvoices = 0;
+let billedInvoices = 0;
 
 const invoicePlaceholders = [
   {
@@ -184,8 +188,22 @@ const CreateInvoice = () => {
     <div className='mx-10'>
       <h1 className='text-4xl font-bold up'>Invoices</h1>
       <div>
-        <p>Active Invoices: {invoicePlaceholders.length}</p>
-        <p></p>
+        {invoicePlaceholders.forEach((invoice) => {
+          invoice.status === 'Paid & Closed'
+            ? paidInvoices++
+            : invoice.status === 'Billed'
+            ? billedInvoices++
+            : invoice.status === 'Awaiting Payment'
+            ? invoicesWaitingForPayment++
+            : invoice.status === 'Active'
+            ? activeInvoices++
+            : '';
+        })}
+        <p>Active Invoices: {activeInvoices}</p>
+        <p>Billed Invoices: {billedInvoices}</p>
+        <p>Waiting on Payment: {invoicesWaitingForPayment}</p>
+        <p>Paid & Closed Invoices:{paidInvoices}</p>
+        <p>Total Invoices: {invoicePlaceholders.length}</p>
       </div>
       {/* Invoice page Main content */}
       <main className='grid items-stretch gap-y-8 mt-5'>
