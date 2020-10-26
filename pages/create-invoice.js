@@ -268,25 +268,24 @@ const CreateInvoice = () => {
         </div>
         <div className='border border-gray-300 p-5 shadow-md rounded'>
           <H2>Invoice Summary</H2>
-          {invoicePlaceholders.forEach((invoice) => {
-            invoice.status === 'Paid & Closed'
-              ? paidInvoices++
-              : invoice.status === 'Billed'
-              ? billedInvoices++
-              : invoice.status === 'Awaiting Payment'
-              ? invoicesWaitingForPayment++
-              : invoice.status === 'Active'
-              ? activeInvoices++
-              : '';
-          })}
-          <p>Active Invoices: {activeInvoices}</p>
-          <p>Billed Invoices: {billedInvoices}</p>
-          <p>Waiting on Payment: {invoicesWaitingForPayment}</p>
-          <p>Paid & Closed Invoices:{paidInvoices}</p>
-          <p>Total Invoices: {invoicePlaceholders.length}</p>
-        </div>
-        <div className='border border-gray-300 p-5 shadow-md rounded'>
-          <H2>Invoice Summary</H2>
+          <div>
+            {invoicePlaceholders.forEach((invoice) => {
+              invoice.status === 'Paid & Closed'
+                ? paidInvoices++
+                : invoice.status === 'Billed'
+                ? billedInvoices++
+                : invoice.status === 'Awaiting Payment'
+                ? invoicesWaitingForPayment++
+                : invoice.status === 'Active'
+                ? activeInvoices++
+                : '';
+            })}
+            <p>Active Invoices: {activeInvoices}</p>
+            <p>Billed Invoices: {billedInvoices}</p>
+            <p>Waiting on Payment: {invoicesWaitingForPayment}</p>
+            <p>Paid & Closed Invoices:{paidInvoices}</p>
+            <p>Total Invoices: {invoicePlaceholders.length}</p>
+          </div>
           <div className='mt-8'>
             {invoicePlaceholders.map((invoice, index) => (
               <div key={index} data-key={index} className='mt-2'>
