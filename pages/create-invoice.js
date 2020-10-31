@@ -303,7 +303,7 @@ function CreateInvoice() {
         <div className='border border-gray-300 p-5 shadow-md rounded'>
           <H2>Invoice Summary</H2>
           <div>
-            {invoicePlaceholders.map((invoice) => {
+            {invoicePlaceholders.forEach((invoice) => {
               return invoice.status === 'Paid & Closed'
                 ? paidInvoices++
                 : invoice.status === 'Billed'
