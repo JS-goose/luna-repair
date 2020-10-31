@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import DashboardLayout from '../components/Layout/dashboardLayout';
 
 const Input = (props) => <input {...props} className='border border-gray-300 p-1 rounded w-48' />;
 const Label = (props) => <label {...props} className='w-40 font-bold flex flex-col' />;
 
 const H2 = ({ children }) => <h2 className='text-2xl leading-7 font-semibold u'>{children}</h2>;
-let paidInvoices = 0;
-let invoicesWaitingForPayment = 0;
-let activeInvoices = 0;
-let billedInvoices = 0;
 
-const CreateInvoice = () => {
-  const [invoicePlaceholders, createNewInvoice] = useState([
+function CreateInvoice() {
+  const invoicePlaceholders = [
     {
       invoiceNumber: '001',
       firstName: 'James',
       lastName: 'Madison',
       company: 'Company Name',
-      address: '1234 Test Address',
+      address1: '1234 Test Address',
+      address2: '',
       city: 'Central City',
       state: 'TX',
       zipCode: '55555',
@@ -34,7 +31,8 @@ const CreateInvoice = () => {
       firstName: 'Oprah',
       lastName: 'Winnefrey',
       company: 'Name of Company',
-      address: '1234 Test Address',
+      address1: '1234 Test Address',
+      address2: '',
       city: 'Beaverton',
       state: 'TX',
       zipCode: '98712',
@@ -51,7 +49,8 @@ const CreateInvoice = () => {
       firstName: 'John',
       lastName: 'Smith',
       company: 'Company Name Here',
-      address: '1234 Test Address',
+      address1: '1234 Test Address',
+      address2: '',
       city: 'Gotham City',
       state: 'TX',
       zipCode: '98712',
@@ -68,7 +67,8 @@ const CreateInvoice = () => {
       firstName: 'Jane',
       lastName: 'Smith',
       company: 'Smith & Co.',
-      address: '1234 Test Address',
+      address1: '1234 Test Address',
+      address2: '',
       city: 'Whateverville',
       state: 'TX',
       zipCode: '98712',
@@ -85,7 +85,8 @@ const CreateInvoice = () => {
       firstName: 'Calvin',
       lastName: 'Klein',
       company: 'Smell Goodz, Inc.',
-      address: '1234 Test Address',
+      address1: '1234 Test Address',
+      address2: '',
       city: 'Hometown',
       state: 'TX',
       zipCode: '98712',
@@ -102,7 +103,8 @@ const CreateInvoice = () => {
       firstName: 'Margaret',
       lastName: 'Thatcher',
       company: 'UK Government, Inc.',
-      address: '1234 Test Address',
+      address1: '1234 Test Address',
+      address2: '',
       city: 'City Name',
       state: 'TX',
       zipCode: '98712',
@@ -119,7 +121,8 @@ const CreateInvoice = () => {
       firstName: 'Janice',
       lastName: 'Joplin',
       company: 'Whatever Company',
-      address: '1234 Test Address',
+      address1: '1234 Test Address',
+      address2: '',
       city: 'Test City',
       state: 'TX',
       zipCode: '98712',
@@ -136,7 +139,8 @@ const CreateInvoice = () => {
       firstName: 'Joan',
       lastName: 'DeArk',
       company: 'Put Name here',
-      address: '1234 Test Address',
+      address1: '1234 Test Address',
+      address2: '',
       city: 'Cityville',
       state: 'TX',
       zipCode: '98712',
@@ -153,7 +157,8 @@ const CreateInvoice = () => {
       firstName: 'Jerry',
       lastName: 'Garcia',
       company: 'Standard Company Name',
-      address: '1234 Test Address',
+      address1: '1234 Test Address',
+      address2: '',
       city: 'Jamestown',
       state: 'TX',
       zipCode: '98712',
@@ -170,7 +175,8 @@ const CreateInvoice = () => {
       firstName: 'Dolly',
       lastName: 'Parton',
       company: 'Generic Company Name',
-      address: '1234 Test Address',
+      address1: '1234 Test Address',
+      address2: '',
       city: 'Put City Name Here',
       state: 'TX',
       zipCode: '98712',
@@ -182,59 +188,96 @@ const CreateInvoice = () => {
       created: '5/19/2020',
       lastUpdated: '11/18/2020',
     },
-  ]);
+  ];
+  const formReducer = (state, event) => {
+    let indexPlusOne = invoicePlaceholders.length++;
+    return {
+      ...state,
+      10: { [event.name]: event.value },
+    };
+  };
+
+  const handleChange = (event) => {
+    setFormData({
+      name: event.target.name,
+      value: event.target.value,
+    });
+  };
+
+  const [formData, setFormData] = useReducer(formReducer, invoicePlaceholders);
+  const [submitting, setSubmitting] = useState(false);
+  let paidInvoices = 0;
+  let invoicesWaitingForPayment = 0;
+  let activeInvoices = 0;
+  let billedInvoices = 0;
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setSubmitting(true);
+    console.log(event.target.value);
+    setTimeout(() => {
+      setSubmitting(false);
+    }, 1200);
+  };
+
   return (
     <div className='mx-10'>
       <h1 className='text-4xl font-bold up'>Invoices</h1>
       {/* Invoice page Main content */}
+      {submitting && <p>Submitting form data...</p>}
       <main className='grid items-stretch gap-y-8 mt-5'>
         <div className='border border-gray-400 p-4 shadow-md rounded'>
           <H2>Create An Invoice</H2>
-          <form className='grid grid-cols-2 gap-y-2 mt-8'>
+          <form className='grid grid-cols-2 gap-y-2 mt-8' onSubmit={handleSubmit}>
             <div className='grid grid-cols-2 gap-y-2 justify-items-center'>
-              <Label htmlFor='invoice-number'>
+              <Label htmlFor='invoiceNumber'>
                 Invoice Number:&nbsp;
-                <Input name='invoice-number' id='invoice-number' type='text' placeholder='#####' required />{' '}
+                <Input
+                  onChange={handleChange}
+                  name='invoiceNumber'
+                  id='invoiceNumber'
+                  type='text'
+                  placeholder='#####'
+                />{' '}
               </Label>
-              <Label htmlFor='first-name'>
+              <Label htmlFor='firstName'>
                 First Name:&nbsp;
-                <Input name='first-name' type='text' placeholder='First Name' id='first-name' required />
+                <Input onChange={handleChange} name='firstName' type='text' placeholder='First Name' id='firstName' />
               </Label>
               <Label htmlFor='address1'>
                 Address 1:&nbsp;
-                <Input name='address1' type='text' placeholder='Address' id='address1' required />
+                <Input onChange={handleChange} name='address1' type='text' placeholder='Address' id='address1' />
               </Label>
-              <Label htmlFor='last-name'>
+              <Label htmlFor='lastName'>
                 Last Name:&nbsp;
-                <Input name='last-name' type='text' placeholder='First Name' id='last-name' required />
+                <Input onChange={handleChange} name='lastName' type='text' placeholder='Last Name' id='lastName' />
               </Label>
               <Label htmlFor='address2'>
                 Address 2:&nbsp;
-                <Input name='address2' type='text' placeholder='Address' id='address2' required />
+                <Input name='address2' type='text' placeholder='Address' id='address2' />
               </Label>
               <Label htmlFor='city'>
                 City:&nbsp;
-                <Input name='city' type='text' placeholder='City' id='city' required />
+                <Input name='city' type='text' placeholder='City' id='city' />
               </Label>
               <Label htmlFor='state'>
                 State:&nbsp;
-                <Input name='state' type='text' placeholder='State' id='state' required />
+                <Input name='state' type='text' placeholder='State' id='state' />
               </Label>
               <Label htmlFor='zipCode'>
                 Zip Code:&nbsp;
-                <Input name='zipCode' type='number' min='0' max='10000' placeholder='Zip Code' id='zipCode' required />
+                <Input name='zipCode' type='number' min='0' max='10000' placeholder='Zip Code' id='zipCode' />
               </Label>
             </div>
             <div className='invoice-creation-column-2'>
-              <Label htmlFor='phone-number'>
+              <Label htmlFor='phoneNumber'>
                 Phone Number:&nbsp;
                 <Input
-                  name='phone-number'
+                  name='phoneNumber'
                   type='tel'
-                  id='phone-number'
+                  id='phoneNumber'
                   placeholder='***-***-****'
                   pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
-                  required
                 />
               </Label>
               <Label htmlFor='email1'>
@@ -245,17 +288,9 @@ const CreateInvoice = () => {
                 Email 2:&nbsp;
                 <Input name='email2' type='email' id='email2' placeholder='dave@email.com' />
               </Label>
-              <Label htmlFor='invoice-price'>
+              <Label htmlFor='amount'>
                 Invoice Price: &nbsp;
-                <Input
-                  name='invoice-price'
-                  type='number'
-                  min='0'
-                  max='50000'
-                  id='invoice-price'
-                  placeholder='$USD'
-                  required
-                />
+                <Input name='amount' type='number' min='0' max='50000' id='amount' placeholder='$USD' />
               </Label>
             </div>
             <div>
@@ -268,8 +303,8 @@ const CreateInvoice = () => {
         <div className='border border-gray-300 p-5 shadow-md rounded'>
           <H2>Invoice Summary</H2>
           <div>
-            {invoicePlaceholders.forEach((invoice) => {
-              invoice.status === 'Paid & Closed'
+            {invoicePlaceholders.map((invoice) => {
+              return invoice.status === 'Paid & Closed'
                 ? paidInvoices++
                 : invoice.status === 'Billed'
                 ? billedInvoices++
@@ -303,7 +338,7 @@ const CreateInvoice = () => {
       </main>
     </div>
   );
-};
+}
 
 CreateInvoice.Layout = DashboardLayout;
 
