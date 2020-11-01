@@ -15,7 +15,7 @@ const useInputs = (initialValues, callback) => {
 
   // eventually we should move handleSubmit in here, when we use an API for the database
 
-  return { values, handleChange };
+  return { values, setValues, handleChange };
 };
 
 export default useInputs;

@@ -14,6 +14,7 @@ const H2 = ({ children }) => (
 );
 
 function CreateInvoice() {
+  // Temporary values for our database of invoices
   const invoicePlaceholders = [
     {
       invoiceNumber: '001',
@@ -197,7 +198,7 @@ function CreateInvoice() {
     },
   ];
 
-  const initialInvoiceState = {
+  const initialInvoiceFormValues = {
     invoiceNumber: '',
     firstName: '',
     lastName: '',
@@ -216,9 +217,13 @@ function CreateInvoice() {
     lastUpdated: '',
   };
 
-  // initialize the cusom hook "useInputs" with the initial state for the "create invoice form"
-  const { values, handleChange } = useInputs(initialInvoiceState);
-  console.log('Values:', values);
+  // ----- Initialize the cusom hook "useInputs" with the initial state for the "create invoice form" ----//
+  // Custom hook includes the "handleChange" logic, as well as the initializing and updating the state for the Invoice submission form
+  // Later, we can update useInputs hook to include logic to update the database with the new entry
+  const { values, setValues, handleChange } = useInputs(
+    initialInvoiceFormValues
+  );
+
   // const formReducer = (state, event) => {
   //   let indexPlusOne = invoicePlaceholders.length++;
   //   return {
@@ -235,14 +240,18 @@ function CreateInvoice() {
   //   console.log('set form data');
   // };
 
-  // console.log('Initial invoice state', initialInvoiceState);
   // const [formData, setFormData] = useReducer(formReducer, invoicePlaceholders);
+
+  // Instead of useReducer, I (Stu) assigned the initial invoices to state with useState - seems simpler but admittedly I don't have a lot of knowledge of useReducer
+
+  const [allInvoices, setAllInvoices] = useState(invoicePlaceholders);
   const [submitting, setSubmitting] = useState(false);
   let paidInvoices = 0;
   let invoicesWaitingForPayment = 0;
   let activeInvoices = 0;
   let billedInvoices = 0;
 
+  // Handlesubmit adds the form data (stored in the "values" variable), to the master invoice list array
   const handleSubmit = (event) => {
     event.preventDefault();
     setSubmitting(true);
@@ -250,16 +259,18 @@ function CreateInvoice() {
 
     const addNewData = () => {
       const body = { ...values };
-      invoicePlaceholders.push(body);
+      const newInvoiceList = allInvoices;
+      newInvoiceList.push(body);
+      setAllInvoices(newInvoiceList);
       setSubmitting(false);
-      console.log('new', invoicePlaceholders);
+      console.log('new', allInvoices);
     };
-
+    // this is to emulate the server response time
     setTimeout(addNewData, 1200);
 
-    // add the new values to the temporary data array
-
     console.log('Submitted!');
+    // Clears the form, and reset the form data's state to the initial values
+    setValues(initialInvoiceFormValues);
   };
 
   return (
@@ -428,7 +439,7 @@ function CreateInvoice() {
         <div className="border border-gray-300 p-5 shadow-md rounded mb-10">
           <H2>Invoice Summary</H2>
           <div>
-            {invoicePlaceholders.forEach((invoice) => {
+            {allInvoices.forEach((invoice) => {
               return invoice.status === 'Paid & Closed'
                 ? paidInvoices++
                 : invoice.status === 'Billed'
@@ -443,10 +454,10 @@ function CreateInvoice() {
             <p>Billed Invoices: {billedInvoices}</p>
             <p>Waiting on Payment: {invoicesWaitingForPayment}</p>
             <p>Paid & Closed Invoices:{paidInvoices}</p>
-            <p>Total Invoices: {invoicePlaceholders.length}</p>
+            <p>Total Invoices: {allInvoices.length}</p>
           </div>
           <div className="mt-8">
-            {invoicePlaceholders.map((invoice, index) => (
+            {allInvoices.map((invoice, index) => (
               <div key={index} data-key={index} className="mt-2">
                 <div className="flex justify-between">
                   <p className="mb-2">
