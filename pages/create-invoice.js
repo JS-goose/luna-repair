@@ -1,10 +1,16 @@
 import React, { useState, useReducer } from 'react';
 import DashboardLayout from '../components/Layout/dashboardLayout';
 
-const Input = (props) => <input {...props} className='border border-gray-300 p-1 rounded w-48' />;
-const Label = (props) => <label {...props} className='w-40 font-bold flex flex-col' />;
+const Input = (props) => (
+  <input {...props} className="border border-gray-300 p-1 rounded w-48" />
+);
+const Label = (props) => (
+  <label {...props} className="w-40 font-bold flex flex-col" />
+);
 
-const H2 = ({ children }) => <h2 className='text-2xl leading-7 font-semibold u'>{children}</h2>;
+const H2 = ({ children }) => (
+  <h2 className="text-2xl leading-7 font-semibold u">{children}</h2>
+);
 
 function CreateInvoice() {
   const invoicePlaceholders = [
@@ -221,86 +227,144 @@ function CreateInvoice() {
   };
 
   return (
-    <div className='mx-10'>
-      <h1 className='text-4xl font-bold up'>Invoices</h1>
+    <div className="mx-10">
+      <h1 className="text-4xl font-bold up">Invoices</h1>
       {/* Invoice page Main content */}
       {submitting && <p>Submitting form data...</p>}
-      <main className='grid items-stretch gap-y-8 mt-5'>
-        <div className='border border-gray-400 p-4 shadow-md rounded'>
+      <main className="grid items-stretch gap-y-8 mt-5">
+        <div className="border border-gray-400 p-4 shadow-md rounded">
           <H2>Create An Invoice</H2>
-          <form className='grid grid-cols-2 gap-y-2 mt-8' onSubmit={handleSubmit}>
-            <div className='grid grid-cols-2 gap-y-2 justify-items-center'>
-              <Label htmlFor='invoiceNumber'>
+          <form
+            className="grid grid-cols-2 gap-y-2 mt-8"
+            onSubmit={handleSubmit}
+          >
+            <div className="grid grid-cols-2 gap-y-2 justify-items-center">
+              <Label htmlFor="invoiceNumber">
                 Invoice Number:&nbsp;
                 <Input
                   onChange={handleChange}
-                  name='invoiceNumber'
-                  id='invoiceNumber'
-                  type='text'
-                  placeholder='#####'
+                  name="invoiceNumber"
+                  id="invoiceNumber"
+                  type="text"
+                  placeholder="#####"
                 />{' '}
               </Label>
-              <Label htmlFor='firstName'>
+              <Label htmlFor="firstName">
                 First Name:&nbsp;
-                <Input onChange={handleChange} name='firstName' type='text' placeholder='First Name' id='firstName' />
-              </Label>
-              <Label htmlFor='address1'>
-                Address 1:&nbsp;
-                <Input onChange={handleChange} name='address1' type='text' placeholder='Address' id='address1' />
-              </Label>
-              <Label htmlFor='lastName'>
-                Last Name:&nbsp;
-                <Input onChange={handleChange} name='lastName' type='text' placeholder='Last Name' id='lastName' />
-              </Label>
-              <Label htmlFor='address2'>
-                Address 2:&nbsp;
-                <Input name='address2' type='text' placeholder='Address' id='address2' />
-              </Label>
-              <Label htmlFor='city'>
-                City:&nbsp;
-                <Input name='city' type='text' placeholder='City' id='city' />
-              </Label>
-              <Label htmlFor='state'>
-                State:&nbsp;
-                <Input name='state' type='text' placeholder='State' id='state' />
-              </Label>
-              <Label htmlFor='zipCode'>
-                Zip Code:&nbsp;
-                <Input name='zipCode' type='number' min='0' max='10000' placeholder='Zip Code' id='zipCode' />
-              </Label>
-            </div>
-            <div className='invoice-creation-column-2'>
-              <Label htmlFor='phoneNumber'>
-                Phone Number:&nbsp;
                 <Input
-                  name='phoneNumber'
-                  type='tel'
-                  id='phoneNumber'
-                  placeholder='***-***-****'
-                  pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
+                  onChange={handleChange}
+                  name="firstName"
+                  type="text"
+                  placeholder="First Name"
+                  id="firstName"
                 />
               </Label>
-              <Label htmlFor='email1'>
+              <Label htmlFor="address1">
+                Address 1:&nbsp;
+                <Input
+                  onChange={handleChange}
+                  name="address1"
+                  type="text"
+                  placeholder="Address"
+                  id="address1"
+                />
+              </Label>
+              <Label htmlFor="lastName">
+                Last Name:&nbsp;
+                <Input
+                  onChange={handleChange}
+                  name="lastName"
+                  type="text"
+                  placeholder="Last Name"
+                  id="lastName"
+                />
+              </Label>
+              <Label htmlFor="address2">
+                Address 2:&nbsp;
+                <Input
+                  name="address2"
+                  type="text"
+                  placeholder="Address"
+                  id="address2"
+                />
+              </Label>
+              <Label htmlFor="city">
+                City:&nbsp;
+                <Input name="city" type="text" placeholder="City" id="city" />
+              </Label>
+              <Label htmlFor="state">
+                State:&nbsp;
+                <Input
+                  name="state"
+                  type="text"
+                  placeholder="State"
+                  id="state"
+                />
+              </Label>
+              <Label htmlFor="zipCode">
+                Zip Code:&nbsp;
+                <Input
+                  name="zipCode"
+                  type="number"
+                  min="0"
+                  max="10000"
+                  placeholder="Zip Code"
+                  id="zipCode"
+                />
+              </Label>
+            </div>
+            <div className="invoice-creation-column-2">
+              <Label htmlFor="phoneNumber">
+                Phone Number:&nbsp;
+                <Input
+                  name="phoneNumber"
+                  type="tel"
+                  id="phoneNumber"
+                  placeholder="***-***-****"
+                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                />
+              </Label>
+              <Label htmlFor="email1">
                 Email 1:&nbsp;
-                <Input name='email1' type='email' id='email1' placeholder='john@email.com' />
+                <Input
+                  name="email1"
+                  type="email"
+                  id="email1"
+                  placeholder="john@email.com"
+                />
               </Label>
-              <Label htmlFor='email2'>
+              <Label htmlFor="email2">
                 Email 2:&nbsp;
-                <Input name='email2' type='email' id='email2' placeholder='dave@email.com' />
+                <Input
+                  name="email2"
+                  type="email"
+                  id="email2"
+                  placeholder="dave@email.com"
+                />
               </Label>
-              <Label htmlFor='amount'>
+              <Label htmlFor="amount">
                 Invoice Price: &nbsp;
-                <Input name='amount' type='number' min='0' max='50000' id='amount' placeholder='$USD' />
+                <Input
+                  name="amount"
+                  type="number"
+                  min="0"
+                  max="50000"
+                  id="amount"
+                  placeholder="$USD"
+                />
               </Label>
             </div>
             <div>
-              <button type='submit' className='border-2 border-black rounded-md p-1 uppercase tracking-wider font-bold'>
+              <button
+                type="submit"
+                className="border-2 border-black rounded-md p-1 uppercase tracking-wider font-bold"
+              >
                 Submit
               </button>
             </div>
           </form>
         </div>
-        <div className='border border-gray-300 p-5 shadow-md rounded'>
+        <div className="border border-gray-300 p-5 shadow-md rounded mb-10">
           <H2>Invoice Summary</H2>
           <div>
             {invoicePlaceholders.forEach((invoice) => {
@@ -320,13 +384,13 @@ function CreateInvoice() {
             <p>Paid & Closed Invoices:{paidInvoices}</p>
             <p>Total Invoices: {invoicePlaceholders.length}</p>
           </div>
-          <div className='mt-8'>
+          <div className="mt-8">
             {invoicePlaceholders.map((invoice, index) => (
-              <div key={index} data-key={index} className='mt-2'>
-                <div className='flex justify-between'>
-                  <p className='mb-2'>
+              <div key={index} data-key={index} className="mt-2">
+                <div className="flex justify-between">
+                  <p className="mb-2">
                     Invoice Number:
-                    <span className='font-bold'>{` ${invoice.invoiceNumber}`}</span>
+                    <span className="font-bold">{` ${invoice.invoiceNumber}`}</span>
                   </p>
                   <p>{invoice.amount}</p>
                 </div>
