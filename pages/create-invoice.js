@@ -1,5 +1,6 @@
 import React, { useState, useReducer } from 'react';
 import DashboardLayout from '../components/Layout/dashboardLayout';
+import useInputs from '../hooks/useInputs';
 
 const Input = (props) => (
   <input {...props} className="border border-gray-300 p-1 rounded w-48" />
@@ -195,22 +196,47 @@ function CreateInvoice() {
       lastUpdated: '11/18/2020',
     },
   ];
-  const formReducer = (state, event) => {
-    let indexPlusOne = invoicePlaceholders.length++;
-    return {
-      ...state,
-      10: { [event.name]: event.value },
-    };
+
+  const initialInvoiceState = {
+    invoiceNumber: '',
+    firstName: '',
+    lastName: '',
+    company: '',
+    address1: '',
+    address2: '',
+    city: ' ',
+    state: '',
+    zipCode: '',
+    phoneNumber: '',
+    email1: '',
+    email2: '',
+    amount: '',
+    status: '',
+    created: '',
+    lastUpdated: '',
   };
 
-  const handleChange = (event) => {
-    setFormData({
-      name: event.target.name,
-      value: event.target.value,
-    });
-  };
+  // initialize the cusom hook "useInputs" with the initial state for the "create invoice form"
+  const { values, handleChange } = useInputs(initialInvoiceState);
+  console.log('Values:', values);
+  // const formReducer = (state, event) => {
+  //   let indexPlusOne = invoicePlaceholders.length++;
+  //   return {
+  //     ...state,
+  //     10: { [event.name]: event.value },
+  //   };
+  // };
 
-  const [formData, setFormData] = useReducer(formReducer, invoicePlaceholders);
+  // const handleChange = (event) => {
+  //   // setFormData({
+  //   //   name: event.target.name,
+  //   //   value: event.target.value,
+  //   // });
+  //   console.log('set form data');
+  // };
+
+  // console.log('Initial invoice state', initialInvoiceState);
+  // const [formData, setFormData] = useReducer(formReducer, invoicePlaceholders);
   const [submitting, setSubmitting] = useState(false);
   let paidInvoices = 0;
   let invoicesWaitingForPayment = 0;
@@ -220,10 +246,20 @@ function CreateInvoice() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setSubmitting(true);
-    console.log(event.target.value);
-    setTimeout(() => {
+    // console.log('Value:', event.target.value);
+
+    const addNewData = () => {
+      const body = { ...values };
+      invoicePlaceholders.push(body);
       setSubmitting(false);
-    }, 1200);
+      console.log('new', invoicePlaceholders);
+    };
+
+    setTimeout(addNewData, 1200);
+
+    // add the new values to the temporary data array
+
+    console.log('Submitted!');
   };
 
   return (
@@ -246,7 +282,8 @@ function CreateInvoice() {
                   name="invoiceNumber"
                   id="invoiceNumber"
                   type="text"
-                  placeholder="#####"
+                  value={values.invoiceNumber}
+                  placeholder="####"
                 />{' '}
               </Label>
               <Label htmlFor="firstName">
@@ -256,6 +293,7 @@ function CreateInvoice() {
                   name="firstName"
                   type="text"
                   placeholder="First Name"
+                  value={values.firstName}
                   id="firstName"
                 />
               </Label>
@@ -267,6 +305,7 @@ function CreateInvoice() {
                   type="text"
                   placeholder="Address"
                   id="address1"
+                  value={values.address1}
                 />
               </Label>
               <Label htmlFor="lastName">
@@ -277,39 +316,53 @@ function CreateInvoice() {
                   type="text"
                   placeholder="Last Name"
                   id="lastName"
+                  value={values.lastName}
                 />
               </Label>
               <Label htmlFor="address2">
                 Address 2:&nbsp;
                 <Input
+                  onChange={handleChange}
                   name="address2"
                   type="text"
                   placeholder="Address"
                   id="address2"
+                  value={values.address2}
                 />
               </Label>
               <Label htmlFor="city">
                 City:&nbsp;
-                <Input name="city" type="text" placeholder="City" id="city" />
+                <Input
+                  onChange={handleChange}
+                  name="city"
+                  type="text"
+                  placeholder="City"
+                  id="city"
+                  value={values.city}
+                />
               </Label>
               <Label htmlFor="state">
                 State:&nbsp;
                 <Input
+                  onChange={handleChange}
                   name="state"
                   type="text"
                   placeholder="State"
                   id="state"
+                  value={values.state}
                 />
               </Label>
               <Label htmlFor="zipCode">
                 Zip Code:&nbsp;
                 <Input
+                  onChange={handleChange}
                   name="zipCode"
                   type="number"
                   min="0"
                   max="10000"
                   placeholder="Zip Code"
                   id="zipCode"
+                  value={values.zipCode}
                 />
               </Label>
             </div>
@@ -317,40 +370,48 @@ function CreateInvoice() {
               <Label htmlFor="phoneNumber">
                 Phone Number:&nbsp;
                 <Input
+                  onChange={handleChange}
                   name="phoneNumber"
                   type="tel"
                   id="phoneNumber"
                   placeholder="***-***-****"
                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                  value={values.phoneNumber}
                 />
               </Label>
               <Label htmlFor="email1">
                 Email 1:&nbsp;
                 <Input
+                  onChange={handleChange}
                   name="email1"
                   type="email"
                   id="email1"
                   placeholder="john@email.com"
+                  value={values.email1}
                 />
               </Label>
               <Label htmlFor="email2">
                 Email 2:&nbsp;
                 <Input
+                  onChange={handleChange}
                   name="email2"
                   type="email"
                   id="email2"
                   placeholder="dave@email.com"
+                  value={values.email2}
                 />
               </Label>
               <Label htmlFor="amount">
                 Invoice Price: &nbsp;
                 <Input
+                  onChange={handleChange}
                   name="amount"
                   type="number"
                   min="0"
                   max="50000"
                   id="amount"
                   placeholder="$USD"
+                  value={values.amount}
                 />
               </Label>
             </div>
