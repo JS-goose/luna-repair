@@ -263,7 +263,6 @@ function CreateInvoice() {
       newInvoiceList.push(body);
       setAllInvoices(newInvoiceList);
       setSubmitting(false);
-      console.log('new', allInvoices);
     };
     // this is to emulate the server response time
     setTimeout(addNewData, 1200);
