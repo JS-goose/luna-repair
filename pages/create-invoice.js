@@ -14,7 +14,7 @@ const H2 = ({ children }) => (
 );
 
 function CreateInvoice() {
-  // Temporary values for our database of invoices
+  // * Temporary values for our database of invoices
   const invoicePlaceholders = [
     {
       invoiceNumber: '001',
@@ -217,32 +217,14 @@ function CreateInvoice() {
     lastUpdated: '',
   };
 
-  // ----- Initialize the cusom hook "useInputs" with the initial state for the "create invoice form" ----//
-  // Custom hook includes the "handleChange" logic, as well as the initializing and updating the state for the Invoice submission form
-  // Later, we can update useInputs hook to include logic to update the database with the new entry
+  // *----- Initialize the cusom hook "useInputs" with the initial state for the "create invoice form" ----//
+  // * Custom hook includes the "handleChange" logic, as well as the initializing and updating the state for the Invoice submission form
+  // * Later, we can update useInputs hook to include logic to update the database with the new entry
   const { values, setValues, handleChange } = useInputs(
     initialInvoiceFormValues
   );
 
-  // const formReducer = (state, event) => {
-  //   let indexPlusOne = invoicePlaceholders.length++;
-  //   return {
-  //     ...state,
-  //     10: { [event.name]: event.value },
-  //   };
-  // };
-
-  // const handleChange = (event) => {
-  //   // setFormData({
-  //   //   name: event.target.name,
-  //   //   value: event.target.value,
-  //   // });
-  //   console.log('set form data');
-  // };
-
-  // const [formData, setFormData] = useReducer(formReducer, invoicePlaceholders);
-
-  // Instead of useReducer, I (Stu) assigned the initial invoices to state with useState - seems simpler but admittedly I don't have a lot of knowledge of useReducer
+  // * Instead of useReducer, I (Stu) assigned the initial invoices to state with useState - seems simpler but admittedly I don't have a lot of knowledge of useReducer
 
   const [allInvoices, setAllInvoices] = useState(invoicePlaceholders);
   const [submitting, setSubmitting] = useState(false);
@@ -251,11 +233,10 @@ function CreateInvoice() {
   let activeInvoices = 0;
   let billedInvoices = 0;
 
-  // Handlesubmit adds the form data (stored in the "values" variable), to the master invoice list array
+  // * Handlesubmit adds the form data (stored in the "values" variable), to the master invoice list array
   const handleSubmit = (event) => {
     event.preventDefault();
     setSubmitting(true);
-    // console.log('Value:', event.target.value);
 
     const addNewData = () => {
       const body = { ...values };
@@ -264,11 +245,11 @@ function CreateInvoice() {
       setAllInvoices(newInvoiceList);
       setSubmitting(false);
     };
-    // this is to emulate the server response time
+    // * This is to emulate the server response time
     setTimeout(addNewData, 1200);
 
     console.log('Submitted!');
-    // Clears the form, and reset the form data's state to the initial values
+    // * Clears the form, and reset the form data's state to the initial values
     setValues(initialInvoiceFormValues);
   };
 
@@ -284,6 +265,7 @@ function CreateInvoice() {
             className="grid grid-cols-2 gap-y-2 mt-8"
             onSubmit={handleSubmit}
           >
+            {/* Order needs to be looked at for accessibility */}
             <div className="grid grid-cols-2 gap-y-2 justify-items-center">
               <Label htmlFor="invoiceNumber">
                 Invoice Number:&nbsp;
