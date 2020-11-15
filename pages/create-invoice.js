@@ -3,14 +3,10 @@ import { useSession } from 'next-auth/client';
 import DashboardLayout from '../components/Layout/dashboardLayout';
 import useInputs from '../hooks/useInputs';
 
-const Input = (props) => (
-  <input {...props} className="border border-gray-300 p-1 rounded w-48" />
-);
-const Label = (props) => (
-  <label {...props} className="w-40 font-bold flex flex-col" />
-);
+const Input = (props) => <input {...props} className='border border-gray-300 p-1 rounded w-48' />;
+const Label = (props) => <label {...props} className='w-40 font-bold flex flex-col' />;
 
-const H2 = ({ children }) => <h2 className="text-2xl leading-7 font-semibold u">{children}</h2>;
+const H2 = ({ children }) => <h2 className='text-2xl leading-7 font-semibold u'>{children}</h2>;
 
 function CreateInvoice() {
   // * Temporary values for our database of invoices
@@ -219,9 +215,7 @@ function CreateInvoice() {
   // *----- Initialize the cusom hook "useInputs" with the initial state for the "create invoice form" ----//
   // * Custom hook includes the "handleChange" logic, as well as the initializing and updating the state for the Invoice submission form
   // * Later, we can update useInputs hook to include logic to update the database with the new entry
-  const { values, setValues, handleChange } = useInputs(
-    initialInvoiceFormValues
-  );
+  const { values, setValues, handleChange } = useInputs(initialInvoiceFormValues);
 
   // * Instead of useReducer, I (Stu) assigned the initial invoices to state with useState - seems simpler but admittedly I don't have a lot of knowledge of useReducer
 
@@ -253,170 +247,164 @@ function CreateInvoice() {
   };
 
   return (
-    <div className="mx-10">
-      <h1 className="text-4xl font-bold up">Invoices</h1>
+    <div className='mx-10'>
+      <h1 className='text-4xl font-bold up'>Invoices</h1>
       {/* Invoice page Main content */}
       {submitting && <p>Submitting form data...</p>}
-      <main className="grid items-stretch gap-y-8 mt-5">
-        <div className="border border-gray-400 p-4 shadow-md rounded">
+      <main className='grid items-stretch gap-y-8 mt-5'>
+        <div className='border border-gray-400 p-4 shadow-md rounded'>
           <H2>Create An Invoice</H2>
-          <form
-            className="grid grid-cols-2 gap-y-2 mt-8"
-            onSubmit={handleSubmit}
-          >
+          <form className='grid grid-cols-2 gap-y-2 mt-8' onSubmit={handleSubmit}>
             {/* Order needs to be looked at for accessibility */}
-            <div className="grid grid-cols-2 gap-y-2 justify-items-center">
-              <Label htmlFor="invoiceNumber">
+            <div className='grid grid-cols-2 gap-y-2 justify-items-center'>
+              <Label htmlFor='invoiceNumber'>
                 Invoice Number:&nbsp;
                 <Input
                   onChange={handleChange}
-                  name="invoiceNumber"
-                  id="invoiceNumber"
-                  type="text"
+                  name='invoiceNumber'
+                  id='invoiceNumber'
+                  type='text'
                   value={values.invoiceNumber}
-                  placeholder="####"
+                  placeholder='####'
                 />{' '}
               </Label>
-              <Label htmlFor="firstName">
+              <Label htmlFor='firstName'>
                 First Name:&nbsp;
                 <Input
                   onChange={handleChange}
-                  name="firstName"
-                  type="text"
-                  placeholder="First Name"
+                  name='firstName'
+                  type='text'
+                  placeholder='First Name'
                   value={values.firstName}
-                  id="firstName"
+                  id='firstName'
                 />
               </Label>
-              <Label htmlFor="address1">
+              <Label htmlFor='address1'>
                 Address 1:&nbsp;
                 <Input
                   onChange={handleChange}
-                  name="address1"
-                  type="text"
-                  placeholder="Address"
-                  id="address1"
+                  name='address1'
+                  type='text'
+                  placeholder='Address'
+                  id='address1'
                   value={values.address1}
                 />
               </Label>
-              <Label htmlFor="lastName">
+              <Label htmlFor='lastName'>
                 Last Name:&nbsp;
                 <Input
                   onChange={handleChange}
-                  name="lastName"
-                  type="text"
-                  placeholder="Last Name"
-                  id="lastName"
+                  name='lastName'
+                  type='text'
+                  placeholder='Last Name'
+                  id='lastName'
                   value={values.lastName}
                 />
               </Label>
-              <Label htmlFor="address2">
+              <Label htmlFor='address2'>
                 Address 2:&nbsp;
                 <Input
                   onChange={handleChange}
-                  name="address2"
-                  type="text"
-                  placeholder="Address"
-                  id="address2"
+                  name='address2'
+                  type='text'
+                  placeholder='Address'
+                  id='address2'
                   value={values.address2}
                 />
               </Label>
-              <Label htmlFor="city">
+              <Label htmlFor='city'>
                 City:&nbsp;
                 <Input
                   onChange={handleChange}
-                  name="city"
-                  type="text"
-                  placeholder="City"
-                  id="city"
+                  name='city'
+                  type='text'
+                  placeholder='City'
+                  id='city'
                   value={values.city}
                 />
               </Label>
-              <Label htmlFor="state">
+              <Label htmlFor='state'>
                 State:&nbsp;
                 <Input
                   onChange={handleChange}
-                  name="state"
-                  type="text"
-                  placeholder="State"
-                  id="state"
+                  name='state'
+                  type='text'
+                  placeholder='State'
+                  id='state'
                   value={values.state}
                 />
               </Label>
-              <Label htmlFor="zipCode">
+              <Label htmlFor='zipCode'>
                 Zip Code:&nbsp;
                 <Input
                   onChange={handleChange}
-                  name="zipCode"
-                  type="number"
-                  min="0"
-                  max="10000"
-                  placeholder="Zip Code"
-                  id="zipCode"
+                  name='zipCode'
+                  type='number'
+                  min='0'
+                  max='10000'
+                  placeholder='Zip Code'
+                  id='zipCode'
                   value={values.zipCode}
                 />
               </Label>
             </div>
-            <div className="invoice-creation-column-2">
-              <Label htmlFor="phoneNumber">
+            <div className='invoice-creation-column-2'>
+              <Label htmlFor='phoneNumber'>
                 Phone Number:&nbsp;
                 <Input
                   onChange={handleChange}
-                  name="phoneNumber"
-                  type="tel"
-                  id="phoneNumber"
-                  placeholder="***-***-****"
-                  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                  name='phoneNumber'
+                  type='tel'
+                  id='phoneNumber'
+                  placeholder='***-***-****'
+                  pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
                   value={values.phoneNumber}
                 />
               </Label>
-              <Label htmlFor="email1">
+              <Label htmlFor='email1'>
                 Email 1:&nbsp;
                 <Input
                   onChange={handleChange}
-                  name="email1"
-                  type="email"
-                  id="email1"
-                  placeholder="john@email.com"
+                  name='email1'
+                  type='email'
+                  id='email1'
+                  placeholder='john@email.com'
                   value={values.email1}
                 />
               </Label>
-              <Label htmlFor="email2">
+              <Label htmlFor='email2'>
                 Email 2:&nbsp;
                 <Input
                   onChange={handleChange}
-                  name="email2"
-                  type="email"
-                  id="email2"
-                  placeholder="dave@email.com"
+                  name='email2'
+                  type='email'
+                  id='email2'
+                  placeholder='dave@email.com'
                   value={values.email2}
                 />
               </Label>
-              <Label htmlFor="amount">
+              <Label htmlFor='amount'>
                 Invoice Price: &nbsp;
                 <Input
                   onChange={handleChange}
-                  name="amount"
-                  type="number"
-                  min="0"
-                  max="50000"
-                  id="amount"
-                  placeholder="$USD"
+                  name='amount'
+                  type='number'
+                  min='0'
+                  max='50000'
+                  id='amount'
+                  placeholder='$USD'
                   value={values.amount}
                 />
               </Label>
             </div>
             <div>
-              <button
-                type="submit"
-                className="border-2 border-black rounded-md p-1 uppercase tracking-wider font-bold"
-              >
+              <button type='submit' className='border-2 border-black rounded-md p-1 uppercase tracking-wider font-bold'>
                 Submit
               </button>
             </div>
           </form>
         </div>
-        <div className="border border-gray-300 p-5 shadow-md rounded mb-10">
+        <div className='border border-gray-300 p-5 shadow-md rounded mb-10'>
           <H2>Invoice Summary</H2>
           <div>
             {allInvoices.forEach((invoice) => {
@@ -436,18 +424,18 @@ function CreateInvoice() {
             <p>Paid & Closed Invoices:{paidInvoices}</p>
             <p>Total Invoices: {allInvoices.length}</p>
           </div>
-          <div className="mt-8">
+          <div className='mt-8'>
             {allInvoices.map((invoice, index) => (
-              <div key={index} data-key={index} className="mt-2">
-                <div className="flex justify-between">
-                  <p className="mb-2">
+              <div key={index} data-key={index} className='mt-2'>
+                <div className='flex justify-between'>
+                  <p className='mb-2'>
                     Invoice Number:
-                    <span className="font-bold">{` ${invoice.invoiceNumber}`}</span>
+                    <span className='font-bold'>{` ${invoice.invoiceNumber}`}</span>
                   </p>
                   <p>{invoice.amount}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </main>
