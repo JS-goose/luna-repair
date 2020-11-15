@@ -1,4 +1,5 @@
 import React, { useState, useReducer } from 'react';
+import { useSession } from 'next-auth/client';
 import DashboardLayout from '../components/Layout/dashboardLayout';
 import useInputs from '../hooks/useInputs';
 
@@ -9,9 +10,7 @@ const Label = (props) => (
   <label {...props} className="w-40 font-bold flex flex-col" />
 );
 
-const H2 = ({ children }) => (
-  <h2 className="text-2xl leading-7 font-semibold u">{children}</h2>
-);
+const H2 = ({ children }) => <h2 className="text-2xl leading-7 font-semibold u">{children}</h2>;
 
 function CreateInvoice() {
   // * Temporary values for our database of invoices
@@ -447,9 +446,8 @@ function CreateInvoice() {
                   </p>
                   <p>{invoice.amount}</p>
                 </div>
-                <hr />
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </main>
